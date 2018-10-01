@@ -1,8 +1,10 @@
 cpu 	8086
 bits 	16
 
-	section .start
-start:		xor 	ah, 	ah
+	section .boot
+boot:			
+	xor 	ah, 	ah
 
-	section .resetvector
-resetvector:	jmp start
+	section .reset
+reset:
+	jmp		0xffff:0

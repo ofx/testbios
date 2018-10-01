@@ -1,6 +1,6 @@
 NASM=nasm
 NASMFLAGS=-f elf
-LDFLAGS=-Tlinker.ld -melf_i386
+LDFLAGS=-Tlinker.ld -melf_i386 -nostartfiles -nostdlib
 OBJECT_FILES=bios.o
 
 .PHONY: all

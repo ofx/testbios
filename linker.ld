@@ -1,6 +1,15 @@
 OUTPUT_FORMAT(binary)
 
 SECTIONS {
-	.start 		0xf0000 : { *(.start) }
-	.resetvector 	0xffff0 : { *(.resetvector) }
+	.boot 	0x0000 : 
+	{ 
+		. = 0x0000;
+		*(.boot) 
+	}
+
+	.reset 	0xfff0 : 
+	{ 
+		. = 0xfff0;
+		*(.reset) 
+	}
 }
