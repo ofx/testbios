@@ -1,0 +1,1 @@
+https://dev.krzaq.cc/post/writing-cpp17-for-16bit-x86/
