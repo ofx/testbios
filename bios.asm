@@ -183,6 +183,150 @@ boot:
 	; 3D - CMP AL Iv
 	CMP		AX,		256
 
+	; 3F - AAS
+	AAS
+
+	; 40 - INC AX
+	INC		AX
+
+	; 41 - INC CX
+	INC		CX
+
+	; 42 - INC DX
+	INC		DX
+
+	; 43 - INC BX
+	INC		BX
+
+	; 44 - INC SP
+	INC		SP
+
+	; 45 - INC BP
+	INC		BP
+
+	; 46 - INC SI
+	INC		SI
+
+	; 47 - INC DI
+	INC		DI
+
+	; 48 - DEC AX
+	DEC		AX
+
+	; 49 - DEC CX
+	DEC		CX
+
+	; 4A - DEC DX
+	DEC		DX
+
+	; 4B - DEC BX
+	DEC		BX
+
+	; 4C - DEC SP
+	DEC		SP
+
+	; 4D - DEC BP
+	DEC		BP
+
+	; 4E - DEC SI
+	DEC		SI
+
+	; 4F - DEC DI
+	DEC		DI
+
+	; 50 - PUSH AX
+	PUSH	AX
+
+	; 51 - PUSH CX
+	PUSH	CX
+
+	; 52 - PUSH DX
+	PUSH	DX
+
+	; 53 - PUSH BX
+	PUSH	BX
+
+	; 54 - PUSH SP
+	PUSH	SP
+
+	; 55 - PUSH BP
+	PUSH	BP
+
+	; 56 - PUSH SI
+	PUSH	SI
+
+	; 57 - PUSH DI
+	PUSH	DI
+
+	; 58 - POP AX
+	POP		AX
+
+	; 59 - POP CX
+	POP		CX
+
+	; 5A - POP DX
+	POP		DX
+
+	; 5B - POP BX
+	POP		BX
+
+	; 5C - POP SP
+	POP		SP
+
+	; 5D - POP BP
+	POP		BP
+
+	; 5E - POP SI
+	POP		SI
+
+	; 5F - POP DI
+	POP		DI
+
+	; 70 - JO
+	JO		10
+
+	; 71 - JNO
+	JNO		10
+
+	; 73 - JB
+	JB		10
+
+	; 74 - JZ
+	JZ		10
+
+	; 75 - JNZ
+	JNZ		10
+
+	; 76 - JBE
+	JBE		10
+
+	; 77 - JNBE
+	JNBE	10
+
+	; 78 - JS
+	JS		10
+
+	; 79 - JNS
+	JNS		10
+
+	; 7A - JP
+	JP		10
+
+	; 7B - JNP
+	JNP		10
+
+	; 7C - JL
+	JL		10
+
+	; 7D - JNL
+	JNL		10
+
+	; 7E - JLE
+	JLE		10
+
+	; 7F - JNLE
+	JNLE	10
+
 	section .reset
 reset:
 	jmp		0xf000:0
