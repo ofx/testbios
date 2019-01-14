@@ -4,7 +4,7 @@ bits 	16
 	section .boot
 boot:
 	; 8086 instructions 00 - FF
-	; Used to test 8086 emulator
+	; Used to test 8086 emulator instruction decoding
 
 	; 00 - ADD Eb Gb
 	ADD		AH,		BH
@@ -283,49 +283,211 @@ boot:
 	POP		DI
 
 	; 70 - JO
-	JO		10
+	JO		location
 
 	; 71 - JNO
-	JNO		10
+	JNO		location
 
-	; 73 - JB
-	JB		10
+	; 72 - JB
+	JB		location
+
+	; 73 - JNB
+	JNB		location
 
 	; 74 - JZ
-	JZ		10
+	JZ		location
 
 	; 75 - JNZ
-	JNZ		10
+	JNZ		location
 
 	; 76 - JBE
-	JBE		10
+	JBE		location
 
 	; 77 - JNBE
-	JNBE	10
+	JNBE	location
 
 	; 78 - JS
-	JS		10
+	JS		location
 
 	; 79 - JNS
-	JNS		10
+	JNS		location
 
 	; 7A - JP
-	JP		10
+	JP		location
 
 	; 7B - JNP
-	JNP		10
+	JNP		location
 
 	; 7C - JL
-	JL		10
+	JL		location
 
 	; 7D - JNL
-	JNL		10
+	JNL		location
 
 	; 7E - JLE
-	JLE		10
+	JLE		location
 
 	; 7F - JNLE
-	JNLE	10
+	JNLE	location
+
+	location:
+
+	; 80 - ADD Eb Ib
+	; 80 - OR Eb Ib
+	; 80 - ADC Eb Ib
+	; 80 - SBB Eb Ib
+	; 80 - AND Eb Ib
+	; 80 - SUB Eb Ib
+	; 80 - XOR Eb Ib
+	; 80 - CMP Eb Ib
+	ADD		AH,		1
+	OR		AH,		1
+	ADC		AH,		1
+	SBB		AH,		1
+	AND		AH,		1
+	SUB		AH,		1
+	XOR		AH,		1
+	CMP		AH,		1
+
+	; 81 - ADD Ev Iv
+	; 81 - OR Ev Iv
+	; 81 - ADC Ev Iv
+	; 81 - SBB Ev Iv
+	; 81 - AND Ev Iv
+	; 81 - SUB Ev Iv
+	; 81 - XOR Ev Iv
+	; 81 - CMP Ev Iv
+	ADD		BX,		256
+	OR		BX,		256
+	ADC		BX,		256
+	SBB		BX,		256
+	AND		BX,		256
+	SUB		BX,		256
+	XOR		BX,		256
+	CMP		BX,		256
+
+	; Alias of 80
+	; 82 - ADD Eb Ib
+	; 82 - OR Eb Ib
+	; 82 - ADC Eb Ib
+	; 82 - SBB Eb Ib
+	; 82 - AND Eb Ib
+	; 82 - SUB Eb Ib
+	; 82 - XOR Eb Ib
+	; 82 - CMP Eb Ib
+
+	; 83 - ADD Ev Iv
+	; 83 - OR Ev Iv
+	; 83 - ADC Ev Iv
+	; 83 - SBB Ev Iv
+	; 83 - AND Ev Iv
+	; 83 - SUB Ev Iv
+	; 83 - XOR Ev Iv
+	; 83 - CMP Ev Iv
+	ADD		BX,		1
+	OR		BX,		1
+	ADC		BX,		1
+	SBB		BX,		1
+	AND		BX,		1
+	SUB		BX,		1
+	XOR		BX,		1
+	CMP		BX,		1
+
+	; 84 - TEST Eb Gb
+	TEST	[0xffff],	AH
+
+	; 85 - TEST Ev Gv
+	TEST	[0xffff],	AX
+
+	; 86 - XCHG Eb Gb
+	XCHG	[0xffff],	AH
+
+	; 87 - XCHG Ev Gv
+	XCHG	[0xffff],	AX
+
+	; 88 - MOV Eb Gb
+	MOV		[0xffff],	AH
+
+	; 89 - MOV Ev Gv
+	MOV		[0xffff],	BX
+
+	; 8A - MOV Gb Eb
+	MOV		AH,			[0xffff]
+
+	; 8B - MOV Gv Ev
+	MOV		BX,			[0xffff]
+
+	; 8C - MOV Mw Sw
+	MOV		[0xffff],	CS
+
+	; 8D - LEA Gv M
+	LEA		SI,			[0xffff]
+
+	; 8E - MOV Sw Ew
+	MOV		CS,			AX
+
+	; 8F - POP Ev
+	POP	WORD [0xffff]
+
+	; 90 - XCHG AX AX
+	XCHG	AX,			AX
+
+	; 91 - XCHG CX AX
+	XCHG	CX,			AX
+
+	; 92 - XCHG DX AX
+	XCHG	DX,			AX
+
+	; 93 - XCHG BX AX
+	XCHG	BX,			AX
+
+	; 94 - XCHG SP AX
+	XCHG	SP,			AX
+
+	; 95 - XCHG BP AX
+	XCHG	BP,			AX
+
+	; 96 - XCHG SI AX
+	XCHG	SI,			AX
+
+	; 97 - XCHG DI AX
+	XCHG	DI,			AX
+
+	; 98 - CBW AX AL
+	CBW
+
+	; 99 - DX AX
+	CWD
+
+	; 9A - CALLF Ap
+	CALL	0xf000:0
+
+	; 9B - WAIT
+	WAIT
+
+	; 9C - PUSHF
+	PUSHF
+
+	; 9D - POPF
+	POPF
+
+	; 9E - SAHF
+	SAHF
+
+	; 9F - LAHF
+	LAHF
+
+	; A0 - MOV AL Ob
+	MOV		AL, 		[0xffff]
+
+	; A1 - MOV AX Ob
+	MOV		AX, 		[0xffff]
+
+	; A2 - MOV Ob AL
+	MOV		[0xffff], 	AL
+
+	; A3 - MOV Ob AX
+	MOV		[0xffff], 	AX
 
 	section .reset
 reset:
