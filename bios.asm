@@ -282,52 +282,52 @@ boot:
 	; 5F - POP DI
 	POP		DI
 
-	; 70 - JO
+	; 70 - JO Jbs
 	JO		location
 
-	; 71 - JNO
+	; 71 - JNO Jbs
 	JNO		location
 
-	; 72 - JB
+	; 72 - JB Jbs
 	JB		location
 
-	; 73 - JNB
+	; 73 - JNB Jbs
 	JNB		location
 
-	; 74 - JZ
+	; 74 - JZ Jbs
 	JZ		location
 
-	; 75 - JNZ
+	; 75 - JNZ Jbs
 	JNZ		location
 
-	; 76 - JBE
+	; 76 - JBE Jbs
 	JBE		location
 
-	; 77 - JNBE
+	; 77 - JNBE Jbs
 	JNBE	location
 
-	; 78 - JS
+	; 78 - JS Jbs
 	JS		location
 
-	; 79 - JNS
+	; 79 - JNS Jbs
 	JNS		location
 
-	; 7A - JP
+	; 7A - JP Jbs
 	JP		location
 
-	; 7B - JNP
+	; 7B - JNP Jbs
 	JNP		location
 
-	; 7C - JL
+	; 7C - JL Jbs
 	JL		location
 
-	; 7D - JNL
+	; 7D - JNL Jbs
 	JNL		location
 
-	; 7E - JLE
+	; 7E - JLE Jbs
 	JLE		location
 
-	; 7F - JNLE
+	; 7F - JNLE Jbs
 	JNLE	location
 
 	location:
@@ -375,22 +375,30 @@ boot:
 	; 82 - SUB Eb Ib
 	; 82 - XOR Eb Ib
 	; 82 - CMP Eb Ib
+	db 0x82, 0xC4, 0x01 
+	db 0x82, 0xCC, 0x01 
+	db 0x82, 0xD4, 0x01 
+	db 0x82, 0xDC, 0x01 
+	db 0x82, 0xE4, 0x01 
+	db 0x82, 0xEC, 0x01 
+	db 0x82, 0xF4, 0x01 
+	db 0x82, 0xFC, 0x01
 
-	; 83 - ADD Ev Iv
-	; 83 - OR Ev Iv
-	; 83 - ADC Ev Iv
-	; 83 - SBB Ev Iv
-	; 83 - AND Ev Iv
-	; 83 - SUB Ev Iv
-	; 83 - XOR Ev Iv
-	; 83 - CMP Ev Iv
+	; 83 - ADD Ev Ibs
+	; 83 - OR Ev Ibs
+	; 83 - ADC Ev Ibs
+	; 83 - SBB Ev Ibs
+	; 83 - AND Ev Ibs
+	; 83 - SUB Ev Ibs
+	; 83 - XOR Ev Ibs
+	; 83 - CMP Ev Ibs
 	ADD		BX,		1
-	OR		BX,		1
+	;OR		BX,		1
 	ADC		BX,		1
 	SBB		BX,		1
-	AND		BX,		1
+	;AND		BX,		1
 	SUB		BX,		1
-	XOR		BX,		1
+	;XOR		BX,		1
 	CMP		BX,		1
 
 	; 84 - TEST Eb Gb
