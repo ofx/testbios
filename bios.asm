@@ -4,7 +4,7 @@ bits 	16
 	section .boot
 boot:
 	; 8086 instructions 00 - FF
-	; Used to test 8086 emulator instruction decoding
+	; Used to test 8086 emulator instruction decodinge n
 
 	; 00 - ADD Eb Gb
 	ADD		AH,		BH
@@ -488,6 +488,333 @@ boot:
 
 	; A3 - MOV Ob AX
 	MOV		[0xffff], 	AX
+
+	; A4 - MOVSB
+	MOVSB
+
+	; A5 - MOVSW
+	MOVSW
+
+	; A6 - CMPSB
+	CMPSB
+
+	; A7 - CMPSW
+	CMPSW
+
+	; A8 - TEST AL Ib
+	TEST	AL,			1
+
+	; A9 - TEST AX Iv
+	TEST	AX,			1
+
+	; AA - STOSB
+	STOSB
+
+	; AB - STOSW
+	STOSW
+
+	; AC - LODSB
+	LODSB
+
+	; AD - LODSW
+	LODSW
+
+	; AE - SCASB
+	SCASB
+
+	; AF - SCASW
+	SCASW
+
+	; B0 - MOV AL Ib
+	MOV		AL,			1
+
+	; B1 - MOV CL Ib
+	MOV		CL,			2
+
+	; B2 - MOV DL Ib
+	MOV		DL,			3
+
+	; B3 - MOV BL Ib
+	MOV		BL,			4
+
+	; B4 - MOV AH Ib
+	MOV		AH,			1
+
+	; B5 - MOV CH Ib
+	MOV		CH,			2
+
+	; B6 - MOV DH Ib
+	MOV		DH,			3
+
+	; B7 - MOV BH Ib
+	MOV		BH,			4
+
+	; B8 - MOV AX Iv
+	MOV		AX,			1
+
+	; B9 - MOV CX Iv
+	MOV		CX,			2
+
+	; BA - MOV DX Iv
+	MOV		DX,			3
+
+	; BB - MOV BX Iv
+	MOV		BX,			4
+
+	; BC - MOV SP Iv
+	MOV		SP,			5
+
+	; BD - MOV BP Iv
+	MOV		BP,			6
+
+	; BE - MOV SI Iv
+	MOV		SI,			7
+
+	; BF - MOV DI Iv
+	MOV		DI,			8
+
+	; C2 - RETN
+	RETN	1
+
+	; C3 - RETN
+	RETN
+
+	; C4 - LES Gv Mp
+	LES		DI,			[0xffff]
+
+	; C5 - LDS Gv Mp
+	LDS		DI,			[0xffff]
+
+	; C6 - MOV Eb Ib
+	MOV BYTE [0xffff],	1
+
+	; C7 - MOV Ev Iv
+	MOV WORD [0xffff],	1
+
+	; CA - RETF Iw
+	RETF	0xf000
+
+	; CB - RETF
+	RETF
+
+	; CC - INT 3
+	db		0xcc
+
+	; CD - INT Ib
+	INT		11
+
+	; CE - INTO
+	INTO
+
+	; CF - IRET
+	IRET
+
+	; D0 - ROL Eb 1
+	; D0 - ROR Eb 1
+	; D0 - RCL Eb 1
+	; D0 - RCR Eb 1
+	; D0 - SHL Eb 1
+	; D0 - SHR Eb 1
+	; D0 - SAL Eb 1
+	; D0 - SAR Eb 1
+	ROL		AH,			1
+	ROR		AH,			1
+	RCL		AH,			1
+	RCR		AH,			1
+	SHL		AH,			1
+	SHR		AH,			1
+	SAL		AH,			1
+	SAR		AH,			1
+
+	; D1 - ROL Ev 1
+	; D1 - ROR Ev 1
+	; D1 - RCL Ev 1
+	; D1 - RCR Ev 1
+	; D1 - SHL Ev 1
+	; D1 - SHR Ev 1
+	; D1 - SAL Ev 1
+	; D1 - SAR Ev 1
+	ROL		AX,			1
+	ROR		AX,			1
+	RCL		AX,			1
+	RCR		AX,			1
+	SHL		AX,			1
+	SHR		AX,			1
+	SAL		AX,			1
+	SAR		AX,			1
+
+	; D2 - ROL Eb CL
+	; D2 - ROR Eb CL
+	; D2 - RCL Eb CL
+	; D2 - RCR Eb CL
+	; D2 - SHL Eb CL
+	; D2 - SHR Eb CL
+	; D2 - SAL Eb CL
+	; D2 - SAR Eb CL
+	ROL		AH,			CL
+	ROR		AH,			CL
+	RCL		AH,			CL
+	RCR		AH,			CL
+	SHL		AH,			CL
+	SHR		AH,			CL
+	SAL		AH,			CL
+	SAR		AH,			CL
+
+	; D3 - ROL Ev CL
+	; D3 - ROR Ev CL
+	; D3 - RCL Ev CL
+	; D3 - RCR Ev CL
+	; D3 - SHL Ev CL
+	; D3 - SHR Ev CL
+	; D3 - SAL Ev CL
+	; D3 - SAR Ev CL
+	ROL		AX,			CL
+	ROR		AX,			CL
+	RCL		AX,			CL
+	RCR		AX,			CL
+	SHL		AX,			CL
+	SHR		AX,			CL
+	SAL		AX,			CL
+	SAR		AX,			CL
+
+	; D4 - AAM
+	AAM
+
+	; D5 - AAD
+	AAD
+
+	; D7 - XLAT
+	XLAT
+
+	; E0 - LOOPNZ
+	LOOPNZ	testlbl
+
+	; E1 - LOOPZ
+	LOOPZ	testlbl
+
+	; E2 - LOOP
+	LOOP	testlbl
+
+	; E3 - JCXZ
+	JCXZ	testlbl
+
+	testlbl:
+
+	; E4 - IN AL Ib
+	IN		AL,			1
+
+	; E5 - IN AX Ib
+	IN		AX,			1
+
+	; E6 - OUT Ib AL
+	OUT		1,			AL
+
+	; E7 - OUT Ib AX
+	OUT		1,			AX
+
+	; E8 - CALL Jv
+	CALL 	testproc
+
+	; E9 - JMP Jv
+	JMP		256
+
+	; EA - JMPF Ap
+	jmp		0xf000:0
+
+	; EB - JMP
+	jmp		testproc
+
+	testproc:
+
+	; EC - IN AL DX
+	IN 		AL, 		DX
+
+	; ED - IN AX DX
+	IN		AX,			DX
+
+	; EE - OUT DX AL
+	OUT		DX,			AL
+
+	; EF - OUT DX AX
+	OUT		DX,			AX
+
+	; F4 - HLT
+	HLT
+
+	; F5 - CMC
+	CMC
+
+	; F6 - TEST Eb Ib
+	; F6 - TEST Eb Ib
+	; F6 - NOT Eb
+	; F6 - NEG Eb
+	; F6 - MUL Eb
+	; F6 - IMUL Eb
+	; F6 - DIV Eb
+	; F6 - IDIV Eb
+	TEST	AH,			1
+	db		0xf6, 0xcc, 0x01
+	NOT		AH
+	NEG		AH
+	MUL		AH
+	IMUL	AH
+	DIV		AH
+	IDIV	AH
+
+	; F7 - TEST Ev Iv
+	; F7 - TEST Ev Iv
+	; F7 - NOT Ev
+	; F7 - NEG Ev
+	; F7 - MUL Ev
+	; F7 - IMUL Ev
+	; F7 - DIV Ev
+	; F7 - IDIV Ev
+	TEST	BX,			1
+	db		0xf7, 0xcb, 0x01
+	NOT		AX
+	NEG		AX
+	MUL		AX
+	IMUL	AX
+	DIV		AX
+	IDIV	AX
+
+	; F8 - CLC
+	CLC
+
+	; F9 - STC
+	STC
+
+	; FA - CLI
+	CLI
+
+	; FB - STI
+	STI
+
+	; FC - CLD
+	CLD
+
+	; FD - STD
+	STD
+
+	; FE - INC Eb
+	; FE - DEC Eb
+	INC		AH
+	DEC		AH
+
+	; FF - INC Ev
+	; FF - DEC Ev
+	; FF - CALL Ev
+	; FF - CALLF Mp
+	; FF - JMP Ev
+	; FF - JMPF Mp
+	; FF - PUSH Ev
+	INC 	 WORD [0xabcd]
+	DEC 	 WORD [0xabcd]
+	CALL 	 WORD [0xabcd]
+	CALL FAR WORD [0xabcd]
+	JMP 	 WORD [0xabcd]
+	JMP FAR  WORD [0xabcd]
+	PUSH 	 WORD [0xabcd]
 
 	section .reset
 reset:
